@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Model Evaluation Report</title>
+<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}"></link>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Model Evaluation Report</h1>
+    <p>Classification performance across 7 classes &middot; training and test splits</p>
+  </header>
+
+  <!-- TRAIN -->
+  <section>
+    <div class="section-title">Training Set</div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="label">Accuracy</div>
+        <div class="value">78.54%</div>
+      </div>
+      <div class="stat">
+        <div class="label">ROC AUC</div>
+        <div class="value">0.9616</div>
+      </div>
+      <div class="stat">
+        <div class="label">Support</div>
+        <div class="value">42,144</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Classification Report</h3>
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th></th><th>Precision</th><th>Recall</th><th>F1-score</th><th>Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th>Class 0</th><td>0.86</td><td>0.96</td><td>0.91</td><td>12,994</td></tr>
+          <tr><th>Class 1</th><td>0.83</td><td>0.53</td><td>0.64</td><td>857</td></tr>
+          <tr><th>Class 2</th><td>0.72</td><td>0.53</td><td>0.61</td><td>2,085</td></tr>
+          <tr><th>Class 3</th><td>0.71</td><td>0.68</td><td>0.69</td><td>8,499</td></tr>
+          <tr><th>Class 4</th><td>0.84</td><td>0.73</td><td>0.78</td><td>2,223</td></tr>
+          <tr><th>Class 5</th><td>0.79</td><td>0.76</td><td>0.78</td><td>3,087</td></tr>
+          <tr><th>Class 6</th><td>0.74</td><td>0.76</td><td>0.75</td><td>12,399</td></tr>
+          <tr class="summary first"><th>Accuracy</th><td></td><td></td><td>0.79</td><td>42,144</td></tr>
+          <tr class="summary"><th>Macro avg</th><td>0.78</td><td>0.71</td><td>0.74</td><td>42,144</td></tr>
+          <tr class="summary"><th>Weighted avg</th><td>0.78</td><td>0.79</td><td>0.78</td><td>42,144</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Confusion Matrix</h3>
+      <table class="cm-table" id="cm-train"></table>
+    </div>
+  </section>
+
+  <!-- TEST -->
+  <section>
+    <div class="section-title">Test Set</div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="label">Accuracy</div>
+        <div class="value">76.33%</div>
+      </div>
+      <div class="stat">
+        <div class="label">ROC AUC</div>
+        <div class="value">0.9545</div>
+      </div>
+      <div class="stat">
+        <div class="label">Support</div>
+        <div class="value">10,536</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Classification Report</h3>
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th></th><th>Precision</th><th>Recall</th><th>F1-score</th><th>Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th>Class 0</th><td>0.85</td><td>0.95</td><td>0.90</td><td>3,349</td></tr>
+          <tr><th>Class 1</th><td>0.78</td><td>0.46</td><td>0.58</td><td>220</td></tr>
+          <tr><th>Class 2</th><td>0.65</td><td>0.51</td><td>0.58</td><td>502</td></tr>
+          <tr><th>Class 3</th><td>0.69</td><td>0.66</td><td>0.67</td><td>2,152</td></tr>
+          <tr><th>Class 4</th><td>0.78</td><td>0.67</td><td>0.72</td><td>554</td></tr>
+          <tr><th>Class 5</th><td>0.75</td><td>0.71</td><td>0.73</td><td>754</td></tr>
+          <tr><th>Class 6</th><td>0.72</td><td>0.73</td><td>0.72</td><td>3,005</td></tr>
+          <tr class="summary first"><th>Accuracy</th><td></td><td></td><td>0.76</td><td>10,536</td></tr>
+          <tr class="summary"><th>Macro avg</th><td>0.75</td><td>0.67</td><td>0.70</td><td>10,536</td></tr>
+          <tr class="summary"><th>Weighted avg</th><td>0.76</td><td>0.76</td><td>0.76</td><td>10,536</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Confusion Matrix</h3>
+      <table class="cm-table" id="cm-test"></table>
+    </div>
+  </section>
+
+  <!-- PREDICTION -->
+  <section>
+    <p>Prediction</p>
+      <form action="{{url_for('index')}}" method="POST" id="form">
+        <textarea type="text" name="statement"
+        v
+        placeholder="Enter the statement">
+{{message}}
+        </textarea>
+            <button>
+                Prediction
+            </button>
+        </form>
+        {% if result %}
+        <p>{{result}}</p>
+        {% endif %}
+  </section>
+
+
+</div>
+
+
+<script src="{{url_for('static',filename='js/index.js')}}"></script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+  :root {
+    --ink: #3f3f46;
+    --ink-soft: #71717a;
+    --ink-faint: #a1a1aa;
+    --line: #e4e4e7;
+    --bg: #fafafa;
+    --panel: #ffffff;
+    --accent: 63, 63, 70; /* rgb of a single neutral tone used for heat intensity */
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 64px 24px 96px;
+    background: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--ink-soft);
+  }
+
+  .wrap {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  header {
+    margin-bottom: 56px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+
+  header p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--ink-faint);
+  }
+
+  section {
+    margin-bottom: 72px;
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* Stat cards */
+  .stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .stat {
+    flex: 1;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+
+  .stat .label {
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+
+  .stat .value {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+
+  /* Tables */
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+  }
+
+  .card h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 16px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+  }
+
+  th, td {
+    padding: 9px 12px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  thead th {
+    color: var(--ink-faint);
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--line);
+  }
+
+  tbody th {
+    text-align: left;
+    color: var(--ink-soft);
+    font-weight: 500;
+    border-right: 1px solid var(--line);
+  }
+
+  tbody tr td, tbody tr th {
+    border-bottom: 1px solid #f0f0f1;
+  }
+
+  tbody tr:last-child td, tbody tr:last-child th {
+    border-bottom: none;
+  }
+
+  /* Report table specifics */
+  .report-table td, .report-table th { text-align: center; }
+  .report-table tbody th { text-align: left; }
+  .report-table tr.summary th,
+  .report-table tr.summary td {
+    color: var(--ink);
+    font-weight: 600;
+    border-top: 1px solid var(--line);
+  }
+  .report-table tr.summary.first td,
+  .report-table tr.summary.first th {
+    border-top: 1px solid var(--line);
+  }
+
+  /* Confusion matrix heat cells */
+  .cm-table td {
+    width: 64px;
+    height: 40px;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .cm-table th.corner {
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cm-table .axis-label {
+    font-size: 10px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  
+  /* Prediction section (Django form) */
+section:has(form[action]) {
+  max-width: 900px;
+  margin: 72px auto 0;
+  padding: 32px 28px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  text-align: center;
+}
+
+section:has(form[action]) > p:first-child {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  margin: 0 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+section:has(form[action]) form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+section:has(form[action]) textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--bg);
+  box-sizing: border-box;
+}
+
+section:has(form[action]) textarea::placeholder {
+  color: var(--ink-faint);
+}
+
+section:has(form[action]) textarea:focus {
+  outline: none;
+  border-color: var(--ink-faint);
+}
+
+section:has(form[action]) button {
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.15s ease;
+}
+
+section:has(form[action]) button:hover {
+  opacity: 0.85;
+}
+
+section:has(form[action]) p:last-child {
+  margin: 20px 0 0;
+  padding: 16px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
